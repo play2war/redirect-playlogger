@@ -2,8 +2,6 @@ organization := "com.github.play2war.ext"
 
 name := "redirect-playlogger"
 
-version := "1.0-SNAPSHOT"
-
 crossScalaVersions := Seq("2.9.1", "2.10.0-RC1")
 
 scalaVersion := "2.10.0-RC5"
@@ -25,3 +23,5 @@ publishTo <<= (version) { version: String =>
 }
 
 publishMavenStyle := false
+
+releaseSettings
