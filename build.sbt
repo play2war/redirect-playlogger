@@ -19,6 +19,7 @@ publishTo <<= (version) { version: String =>
   val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.url("snapshot",  url(cloudbees + "snapshot/"))(Resolver.ivyStylePatterns)
 //  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))(Resolver.ivyStylePatterns)
              else Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))
+//             else Resolver.url("release",  url(cloudbees + "release/"))(Resolver.ivyStylePatterns)
   Some(repo)
 }
 
