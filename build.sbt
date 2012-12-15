@@ -16,13 +16,15 @@ libraryDependencies <+= (scalaVersion) { scalaVersion: String =>
 
 publishTo <<= (version) { version: String =>
   val cloudbees = "https://repository-play-war.forge.cloudbees.com/"
-  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.url("snapshot",  url(cloudbees + "snapshot/"))(Resolver.ivyStylePatterns)
-//  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))(Resolver.ivyStylePatterns)
+  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.url("snapshot",  url(cloudbees + "snapshot/"))
+//  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))
              else Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))
-//             else Resolver.url("release",  url(cloudbees + "release/"))(Resolver.ivyStylePatterns)
+//             else Resolver.url("release",  url(cloudbees + "release/"))
   Some(repo)
 }
 
-publishMavenStyle := false
+publishMavenStyle := true
 
 releaseSettings
+
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
