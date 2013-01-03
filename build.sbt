@@ -4,7 +4,7 @@ name := "redirect-playlogger"
 
 crossScalaVersions := Seq("2.9.1", "2.10.0-RC1")
 
-scalaVersion := "2.10.0-RC5"
+scalaVersion := "2.10.0"
 
 resolvers += "Typesafe releases" at "http://repo.typesafe.com/typesafe/releases"
 
