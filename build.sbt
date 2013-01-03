@@ -17,11 +17,11 @@ libraryDependencies <+= (scalaVersion) { scalaVersion: String =>
 } 
 
 publishTo <<= (version) { version: String =>
-  val cloudbees = "https://repository-play-war.forge.cloudbees.com/"
-  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.url("snapshot",  url(cloudbees + "snapshot/"))
+  val nexus = "https://oss.sonatype.org/"
+  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.url("snapshot",  url(nexus + "content/repositories/snapshots"))
 //  val repo = if (version.trim.endsWith("SNAPSHOT")) Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))
-             else Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))
-//             else Resolver.url("release",  url(cloudbees + "release/"))
+//             else Resolver.file("file",  file(Path.userHome.absolutePath + "/.ivy2/publish"))
+             else Resolver.url("release",  url(nexus + "service/local/staging/deploy/maven2"))
   Some(repo)
 }
 
@@ -29,4 +29,21 @@ publishMavenStyle := true
 
 releaseSettings
 
-credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+pomIncludeRepository := { _ => false }
+
+licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+
+homepage := Some(url("https://github.com/dlecan/redirect-playlogger"))
+
+pomExtra := (
+  <scm>
+    <url>git@github.com:dlecan/redirect-playlogger.git</url>
+    <connection>scm:git:git@github.com:dlecan/redirect-playlogger.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>dlecan</id>
+      <name>Damien Lecan</name>
+      <email>dev@dlecan.com</email>
+    </developer>
+  </developers>)
