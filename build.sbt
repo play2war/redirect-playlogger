@@ -8,6 +8,8 @@ scalaVersion := "2.10.0-RC5"
 
 resolvers += "Typesafe releases" at "http://repo.typesafe.com/typesafe/releases"
 
+autoScalaLibrary := false
+
 libraryDependencies <+= (scalaVersion) { scalaVersion: String =>
   val playVersion = if (scalaVersion.contains("2.9")) "2.0.4"
                     else "2.1-RC1"
