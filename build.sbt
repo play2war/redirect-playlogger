@@ -2,7 +2,7 @@ organization := "com.github.play2war.ext"
 
 name := "redirect-playlogger"
 
-crossScalaVersions := Seq("2.9.1", "2.10.0-RC1")
+crossScalaVersions := Seq("2.9.1", "2.10.4", "2.11.1")
 
 scalaVersion := "2.10.0"
 
@@ -11,9 +11,13 @@ resolvers += "Typesafe releases" at "http://repo.typesafe.com/typesafe/releases"
 autoScalaLibrary := false
 
 libraryDependencies <+= (scalaVersion) { scalaVersion: String =>
-  val playVersion = if (scalaVersion.contains("2.9")) "2.0.4"
-                    else "2.1-RC1"
-  "play" %% "play" % playVersion % "provided->default"  
+  if (scalaVersion.contains("2.11")) {
+    "com.typesafe.play" %% "play" % "2.3.0" % "provided->default"
+  } else {
+    val playVersion = if (scalaVersion.contains("2.9")) "2.0.4"
+                      else "2.1.0"
+    "play" %% "play" % playVersion % "provided->default"
+  }
 } 
 
 publishTo <<= (version) { version: String =>
